@@ -1,7 +1,7 @@
 /*
 This query will search all values of each document
 in a collection, regardless of structure, and filter
-based on a case insenstive filter match.
+based on a case insenstive value match.
 */
 FOR x IN @collection
     /* could sort here... */
