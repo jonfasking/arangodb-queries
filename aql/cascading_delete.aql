@@ -1,0 +1,13 @@
+/*
+This is a cascading delete query that will delete all edges
+on a given vertex, and all corresponding vertices. It
+does not delete the original document.
+*/
+FOR x IN @edgeCollection 
+    FILTER x._from == @id
+    /* parse out the key */
+    LET k = LAST(SPLIT( x._to, "/" ))
+    /* delete the edges */
+    REMOVE { _key: x._key } IN @edgeCollection
+    /* delete the vertices */
+    REMOVE { _key: k } IN @collection
